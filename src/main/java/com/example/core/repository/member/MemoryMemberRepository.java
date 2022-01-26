@@ -17,7 +17,8 @@ public class MemoryMemberRepository implements MemberRepository{
     @Override
     public Member save(String userId, String passwd, Grade grade) {
         Member member = new Member(sequence++, userId, passwd, grade);
-        return repository.put(member.getId(), member);
+        repository.put(member.getId(), member);
+        return member;
     }
 
     @Override
@@ -38,5 +39,9 @@ public class MemoryMemberRepository implements MemberRepository{
     @Override
     public Member deleteOne(Long id) {
         return repository.remove(id);
+    }
+
+    protected void clear() {
+        repository.clear();
     }
 }

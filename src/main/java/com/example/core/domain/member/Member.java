@@ -22,4 +22,12 @@ public class Member {
     public String getUserId() {
         return userId;
     }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public Grade getGrade() {
+        return grade;
+    }
 }
