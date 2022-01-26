@@ -43,7 +43,7 @@ public class MemoryMemberRepository implements MemberRepository{
         return repository.remove(id);
     }
 
-    protected void clear() {
+    public void clear() {
         repository.clear();
     }
 }

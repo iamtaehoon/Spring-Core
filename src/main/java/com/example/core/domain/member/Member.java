@@ -36,4 +36,8 @@ public class Member {
     public String getPhoneNum() {
         return phoneNum;
     }
+
+    public void changeGrade(Grade grade) {
+        this.grade = grade;
+    }
 }

@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+// Transaction 어노테이션은 JPA 적용했을 때.
 public class MemberServiceImpl implements MemberService{
     private final MemberRepository memberRepository;
 
@@ -33,5 +34,12 @@ public class MemberServiceImpl implements MemberService{
             throw new IllegalArgumentException("존재하지 않는 회원입니다.");
         }
         return new MemberDTO(memberRepository.findOneByUserId(userId).get());
+    }
+
+    @Override
+    public MemberDTO changeGrade(Long id, Grade grade) {
+        Member member = memberRepository.findOne(id).get();
+        member.changeGrade(grade);
+        return new MemberDTO(member);
     }
 }
