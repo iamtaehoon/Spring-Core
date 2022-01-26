@@ -5,18 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
+
+import org.springframework.stereotype.Repository;
 
 import com.example.core.domain.Grade;
 import com.example.core.domain.member.Member;
 
+@Repository
 public class MemoryMemberRepository implements MemberRepository{
     private static final Map<Long, Member> repository = new HashMap<>();
     private static Long sequence = 0L;
 
     @Override
-    public Member save(String userId, String passwd, Grade grade) {
-        Member member = new Member(sequence++, userId, passwd, grade);
+    public Member save(String userId, String passwd, Grade grade, String phoneNum) {
+        Member member = new Member(sequence++, userId, passwd, grade, phoneNum);
         repository.put(member.getId(), member);
         return member;
     }

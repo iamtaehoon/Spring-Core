@@ -7,7 +7,7 @@ import com.example.core.domain.Grade;
 import com.example.core.domain.member.Member;
 
 public interface MemberRepository {
-    public Member save(String userId, String passwd, Grade grade); //MemberForm에 의존하면 안됨.
+    public Member save(String userId, String passwd, Grade grade, String phoneNum); //MemberForm에 의존하면 안됨.
 
     public Optional<Member> findOne(Long id);
 

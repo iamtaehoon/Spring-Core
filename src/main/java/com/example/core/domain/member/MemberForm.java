@@ -1,16 +1,14 @@
 package com.example.core.domain.member;
 
-import com.example.core.domain.Grade;
-
 public class MemberForm {
     private String userId;
     private String passwd;
-    private Grade grade;
+    private String phoneNum;
 
-    public MemberForm(String userId, String passwd, Grade grade) {
+    public MemberForm(String userId, String passwd, String phoneNum) {
         this.userId = userId;
         this.passwd = passwd;
-        this.grade = grade;
+        this.phoneNum = phoneNum;
     }
 
     public String getUserId() {
@@ -21,7 +19,7 @@ public class MemberForm {
         return passwd;
     }
 
-    public Grade getGrade() {
-        return grade;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 }

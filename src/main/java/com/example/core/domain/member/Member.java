@@ -7,12 +7,14 @@ public class Member {
     private String userId;
     private String passwd;
     private Grade grade;
+    private String phoneNum;
 
-    public Member(Long id, String userId, String passwd, Grade grade) {
+    public Member(Long id, String userId, String passwd, Grade grade, String phoneNum) {
         this.id = id;
         this.userId = userId;
         this.passwd = passwd;
         this.grade = grade;
+        this.phoneNum = phoneNum;
     }
 
     public Long getId() {
@@ -29,5 +31,9 @@ public class Member {
 
     public Grade getGrade() {
         return grade;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
     }
 }

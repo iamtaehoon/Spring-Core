@@ -1,12 +1,10 @@
 package com.example.core.repository.member;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Optional;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +22,7 @@ class MemoryMemberRepositoryTest {
     @Test
     void 회원_저장() {
         //given, when
-        Member saveMember = memoryMemberRepository.save("id0", "pw0", Grade.NORMAL);
+        Member saveMember = memoryMemberRepository.save("id0", "pw0", Grade.NORMAL, "010-1111-1111");
 
         //then
         assertThat(saveMember.getUserId()).isEqualTo("id0");
@@ -35,8 +33,8 @@ class MemoryMemberRepositoryTest {
     @Test
     void 회원_id_조회_정상() {
         //given
-        Member saveMember1 = memoryMemberRepository.save("id1", "pw1", Grade.NORMAL);
-        Member saveMember2 = memoryMemberRepository.save("id2", "pw2", Grade.NORMAL);
+        Member saveMember1 = memoryMemberRepository.save("id1", "pw1", Grade.NORMAL, "010-1111-1111");
+        Member saveMember2 = memoryMemberRepository.save("id2", "pw2", Grade.NORMAL, "010-1111-1111");
 
         //when
         assertThat(memoryMemberRepository.findOne(saveMember2.getId()).get()).isEqualTo(saveMember2);
@@ -50,9 +48,9 @@ class MemoryMemberRepositoryTest {
     @Test
     void 회원_userId_조회_정상() {
         //given
-        Member saveMember1 = memoryMemberRepository.save("id1", "pw1", Grade.NORMAL);
-        Member saveMember2 = memoryMemberRepository.save("id2", "pw2", Grade.NORMAL);
-        Member saveMember3 = memoryMemberRepository.save("id3", "pw3", Grade.VIP);
+        Member saveMember1 = memoryMemberRepository.save("id1", "pw1", Grade.NORMAL, "010-1111-1111");
+        Member saveMember2 = memoryMemberRepository.save("id2", "pw2", Grade.NORMAL, "010-1111-1111");
+        Member saveMember3 = memoryMemberRepository.save("id3", "pw3", Grade.VIP, "010-1111-1111");
 
         assertThat(memoryMemberRepository.findOneByUserId(saveMember2.getUserId()).get()).isEqualTo(saveMember2);
     }
@@ -65,10 +63,10 @@ class MemoryMemberRepositoryTest {
     @Test
     void 회원_전체_조회() {
         //given
-        Member saveMember1 = memoryMemberRepository.save("id1", "pw1", Grade.NORMAL);
-        Member saveMember2 = memoryMemberRepository.save("id2", "pw2", Grade.NORMAL);
-        Member saveMember3 = memoryMemberRepository.save("id3", "pw3", Grade.VIP);
-        Member notSaveMember = new Member(1000L, "id", "pw", Grade.NORMAL);
+        Member saveMember1 = memoryMemberRepository.save("id1", "pw1", Grade.NORMAL, "010-1111-1111");
+        Member saveMember2 = memoryMemberRepository.save("id2", "pw2", Grade.NORMAL, "010-1111-1111");
+        Member saveMember3 = memoryMemberRepository.save("id3", "pw3", Grade.VIP, "010-1111-1111");
+        Member notSaveMember = new Member(1000L, "id", "pw", Grade.NORMAL, "010-1111-1111");
 
         //when
         List<Member> allMembers = memoryMemberRepository.findAll();
@@ -84,9 +82,9 @@ class MemoryMemberRepositoryTest {
     @Test
     void 회원_삭제() {
         //given
-        Member saveMember1 = memoryMemberRepository.save("id1", "pw1", Grade.NORMAL);
-        Member saveMember2 = memoryMemberRepository.save("id2", "pw2", Grade.NORMAL);
-        Member saveMember3 = memoryMemberRepository.save("id3", "pw3", Grade.VIP);
+        Member saveMember1 = memoryMemberRepository.save("id1", "pw1", Grade.NORMAL, "010-1111-1111");
+        Member saveMember2 = memoryMemberRepository.save("id2", "pw2", Grade.NORMAL, "010-1111-1111");
+        Member saveMember3 = memoryMemberRepository.save("id3", "pw3", Grade.VIP, "010-1111-1111");
 
         //when
         memoryMemberRepository.deleteOne(saveMember1.getId());
