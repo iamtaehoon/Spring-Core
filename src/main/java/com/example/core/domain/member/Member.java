@@ -14,4 +14,12 @@ public class Member {
         this.passwd = passwd;
         this.grade = grade;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
 }
