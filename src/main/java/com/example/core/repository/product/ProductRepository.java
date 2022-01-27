@@ -10,6 +10,8 @@ public interface ProductRepository {
 
     public Optional<Product> findOne(Long id);
 
+    public Optional<Product> findOneUsingName(String name);
+
     public List<Product> findAll();
 
     public boolean canPurchaseQuantity(Long id, int wishToPurchaseCnt);

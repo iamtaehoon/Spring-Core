@@ -26,6 +26,12 @@ public class MemoryProductRepository implements ProductRepository {
     }
 
     @Override
+    public Optional<Product> findOneUsingName(String name) {
+        return repository.values().stream()
+            .filter(product -> product.getName().equals(name)).findAny();
+    }
+
+    @Override
     public List<Product> findAll() {
         return new ArrayList<>(repository.values());
     }
@@ -58,5 +64,9 @@ public class MemoryProductRepository implements ProductRepository {
     @Override
     public void delete(Long id) {
         repository.remove(id);
+    }
+
+    public void clear() {
+        repository.clear();
     }
 }
