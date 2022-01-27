@@ -17,10 +17,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
-    private ProductRepository productRepository;
-    private MemberRepository memberRepository;
-    private OrderRepository orderRepository;
-    private Discount discount;
+    private final ProductRepository productRepository;
+    private final MemberRepository memberRepository;
+    private final OrderRepository orderRepository;
+    private final Discount discount;
 
     @Override
     public ProductDTO register(ProductForm productForm) {

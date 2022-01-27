@@ -41,4 +41,8 @@ public class MemoryOrderRepository implements OrderRepository {
     public void delete(Long orderId) {
         repository.remove(orderId);
     }
+
+    public void clear() {
+        repository.clear();
+    }
 }

@@ -7,6 +7,12 @@ public class FixDiscount implements Discount {
 
     @Override
     public int calculateDiscountPrice(int originalPrice, Grade grade) {
-        return originalPrice * (int) Math.floor(DISCOUNT_RATE);
+        if (grade == Grade.VIP) {
+            return (int) Math.floor(originalPrice * (DISCOUNT_RATE));
+        }
+        if (grade == Grade.NORMAL) {
+            return 0;
+        }
+        throw new IllegalStateException("불가능한 상태");
     }
 }
