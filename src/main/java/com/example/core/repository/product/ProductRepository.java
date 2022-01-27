@@ -3,7 +3,7 @@ package com.example.core.repository.product;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.core.domain.Product;
+import com.example.core.domain.product.Product;
 
 public interface ProductRepository {
     public Product save(String name, int price, int quantity);

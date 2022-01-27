@@ -5,15 +5,13 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 import java.util.Optional;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import com.example.core.domain.Product;
-import com.example.core.repository.member.MemoryMemberRepository;
+import com.example.core.domain.product.Product;
 
 class MemoryProductRepositoryTest {
     MemoryProductRepository productRepository = new MemoryProductRepository();

@@ -5,9 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-import com.example.core.domain.Product;
+import com.example.core.domain.product.Product;
 
 public class MemoryProductRepository implements ProductRepository {
     private static final Map<Long, Product> repository = new HashMap<>();
