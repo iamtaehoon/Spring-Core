@@ -14,7 +14,7 @@ import com.example.core.domain.member.MemberDTO;
 import com.example.core.domain.member.MemberForm;
 import com.example.core.repository.member.MemoryMemberRepository;
 
-class MemberServiceImplTest { //클래스 이름 바꿔야겠다. MemberServiceImpl이 아니라 memoryMemberRepo 썻다고 가르쳐줘야할듯?
+class MemberServiceWithMemoryRepoTest {
     MemoryMemberRepository memberRepository = new MemoryMemberRepository();
     MemberService memberService = new MemberServiceImpl(memberRepository);
 
