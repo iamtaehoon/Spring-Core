@@ -28,4 +28,11 @@ public class Product {
     public int getQuantity() {
         return quantity;
     }
+
+    public void reduceQuantity(int wishToPurchaseCnt) {
+        if (quantity < wishToPurchaseCnt) {
+            throw new IllegalArgumentException("남아있는 개수보다 더 많은 상품을 구매할 수 없습니다.");
+        }
+        this.quantity = this.quantity - wishToPurchaseCnt;
+    }
 }
