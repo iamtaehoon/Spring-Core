@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
 import com.example.core.domain.product.Product;
 
+@Repository
 public class MemoryProductRepository implements ProductRepository {
     private static final Map<Long, Product> repository = new HashMap<>();
     private static Long sequence = 0L;
@@ -16,6 +19,13 @@ public class MemoryProductRepository implements ProductRepository {
     public Product save(String name, int price, int quantity) {
         Product product = new Product(sequence++, name, price, quantity);
         repository.put(product.getId(), product);
+        return product;
+    }
+
+    @Override
+    public Product modify(Long id, String name, int price, int quantity) {
+        Product product = new Product(id, name, price, quantity);
+        repository.put(id, product);
         return product;
     }
 

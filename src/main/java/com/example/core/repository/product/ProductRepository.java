@@ -8,6 +8,8 @@ import com.example.core.domain.product.Product;
 public interface ProductRepository {
     public Product save(String name, int price, int quantity);
 
+    public Product modify(Long id, String name, int price, int quantity);
+
     public Optional<Product> findOne(Long id);
 
     public Optional<Product> findOneUsingName(String name);

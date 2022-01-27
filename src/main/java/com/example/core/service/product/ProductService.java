@@ -7,12 +7,12 @@ import com.example.core.domain.product.ProductForm;
 public interface ProductService {
     public ProductDTO register(ProductForm productForm);
 
-    public ProductDTO dropOut(Long productId);
+    public Long dropOut(Long productId);
 
     public ProductDTO modifyDetails(Long productId, ProductForm productForm);
 
-    public int calculatePrice(Long productId, int wishToPurchaseCnt);
+    public int calculatePrice(Long memberId, Long productId, int wishToPurchaseCnt);
 
-    public Order purchase(Long productId, int wishToPurchaseCnt);
+    public Order purchase(Long memberId, Long productId, int wishToPurchaseCnt);
 
 }
