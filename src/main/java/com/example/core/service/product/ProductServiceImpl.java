@@ -1,7 +1,5 @@
 package com.example.core.service.product;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.example.core.domain.Order;
@@ -10,6 +8,7 @@ import com.example.core.domain.member.Member;
 import com.example.core.domain.product.Product;
 import com.example.core.domain.product.ProductDTO;
 import com.example.core.domain.product.ProductForm;
+import com.example.core.repository.order.OrderRepository;
 import com.example.core.repository.member.MemberRepository;
 import com.example.core.repository.product.ProductRepository;
 
@@ -71,8 +70,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Order purchase(Long memberId, Long productId, int wishToPurchaseCnt) {
         productRepository.reduce(productId, wishToPurchaseCnt);
-        Order order = new Order(memberId, productId, wishToPurchaseCnt);
-        orderRepository.save(order);
+        Order order = orderRepository.save(memberId, productId, wishToPurchaseCnt);
         return order;
     }
 }
