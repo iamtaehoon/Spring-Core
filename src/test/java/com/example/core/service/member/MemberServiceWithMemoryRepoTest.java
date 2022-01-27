@@ -1,18 +1,16 @@
-package com.example.core.domain.service;
+package com.example.core.service.member;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.core.domain.Grade;
 import com.example.core.domain.member.MemberDTO;
 import com.example.core.domain.member.MemberForm;
 import com.example.core.repository.member.MemoryMemberRepository;
+import com.example.core.service.member.MemberService;
+import com.example.core.service.member.MemberServiceImpl;
 
 class MemberServiceWithMemoryRepoTest {
     MemoryMemberRepository memberRepository = new MemoryMemberRepository();

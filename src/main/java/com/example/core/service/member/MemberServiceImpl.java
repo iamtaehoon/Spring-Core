@@ -1,4 +1,4 @@
-package com.example.core.domain.service;
+package com.example.core.service.member;
 
 import java.util.Optional;
 
@@ -9,13 +9,14 @@ import com.example.core.domain.member.Member;
 import com.example.core.domain.member.MemberDTO;
 import com.example.core.domain.member.MemberForm;
 import com.example.core.repository.member.MemberRepository;
+import com.example.core.service.member.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 // Transaction 어노테이션은 JPA 적용했을 때.
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     @Override

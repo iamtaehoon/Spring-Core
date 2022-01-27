@@ -1,4 +1,4 @@
-package com.example.core.domain.service;
+package com.example.core.service.member;
 
 import com.example.core.domain.Grade;
 import com.example.core.domain.member.MemberDTO;
