@@ -1,11 +1,24 @@
 package com.example.core.repository.product;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.example.core.domain.Product;
 
 public interface ProductRepository {
-    public boolean canPurchaseQuantity(Long productId, int wishToPurchaseCnt);
+    public Product save(String name, int price, int quantity);
 
-    public int getThisPrice(Long productId);
+    public Optional<Product> findOne(Long id);
 
-    public int reduce(Long productId, int wishToPurchaseCnt);
+    public List<Product> findAll();
+
+    public boolean canPurchaseQuantity(Long id, int wishToPurchaseCnt);
+
+    public int getThisPrice(Long id);
+
+    public Product update(Long id, String name, int price, int quantity);
+
+    public int reduce(Long id, int wishToPurchaseCnt);
+
+    public void delete(Long id);
 }
