@@ -22,9 +22,10 @@ class MemberServiceWithMemoryRepoTest {
     @Test
     void 회원_가입() {
         MemberForm memberForm = new MemberForm("id1", "pwd1", "010-1111-1111");
-        MemberDTO joinMember = memberService.join(memberForm);
-        assertThat(joinMember.getUserId()).isEqualTo(memberForm.getUserId());
-        assertThat(joinMember.getGrade()).isEqualTo(Grade.NORMAL);
+        Long joinMemberId = memberService.join(memberForm);
+        MemberDTO joinMemberDTO = memberService.lookUp(joinMemberId);
+        assertThat(joinMemberDTO.getUserId()).isEqualTo(memberForm.getUserId());
+        assertThat(joinMemberDTO.getGrade()).isEqualTo(Grade.NORMAL);
     }
 
     @Test

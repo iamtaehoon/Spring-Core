@@ -1,5 +1,7 @@
 package com.example.core.service.member;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -20,13 +22,13 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     @Override
-    public MemberDTO join(MemberForm memberForm) {
+    public Long join(MemberForm memberForm) {
         if (!memberRepository.findOneByUserId(memberForm.getUserId()).equals(Optional.empty())) {
             throw new IllegalArgumentException("이미 사용중인 id입니다.");
         }
         Member saveMember = memberRepository.save(memberForm.getUserId(), memberForm.getPasswd(),
             Grade.NORMAL, memberForm.getPhoneNum());//처음에는 당연히 normal이지.
-        return new MemberDTO(saveMember);
+        return saveMember.getId();
     }
 
     @Override
@@ -41,6 +43,14 @@ public class MemberServiceImpl implements MemberService {
     public MemberDTO modifyGrade(Long id) {
         Member member = switchGrade(id);
         return new MemberDTO(member);
+    }
+
+    @Override
+    public List<MemberDTO> findAll() {
+        List<Member> allMembers = memberRepository.findAll();
+        List<MemberDTO> allMembersDTO = new ArrayList<>();
+        allMembers.stream().forEach(member -> allMembersDTO.add(new MemberDTO(member)));
+        return allMembersDTO;
     }
 
     private Member switchGrade(Long id) {

@@ -18,4 +18,12 @@ public class MemberDTO {
     public Grade getGrade() {
         return grade;
     }
+
+    @Override
+    public String toString() {
+        return "MemberDTO{" +
+            "userId='" + userId + '\'' +
+            ", grade=" + grade +
+            '}';
+    }
 }
