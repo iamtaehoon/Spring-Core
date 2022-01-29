@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-dasdad
+<form method="post">
+    <div>
+        <label>회원ID</label>
+        <input type="text" id="userId" name="userId" placeholder="id를 입력하세요.">
+    </div>
+    <div>
+        <label>비밀번호</label>
+        <input type="text" id="passwd" name="passwd" placeholder="password를 입력하세요.">
+    </div>
+    <div>
+        <label>전화번호</label>
+        <input type="text" id="phoneNum" name="phoneNum" placeholder="전화번호를 입력하세요.">
+    </div>
+
+    <button type="submit">회원가입</button>
+    <button th:onclick="|location.href='@{/members}'|" type="button">취소</button>
+</form>
+
 </body>
 </html>

@@ -1,5 +1,10 @@
 package com.example.core.domain.member;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class MemberForm {
     private String userId;
     private String passwd;
@@ -9,17 +14,5 @@ public class MemberForm {
         this.userId = userId;
         this.passwd = passwd;
         this.phoneNum = phoneNum;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public String getPhoneNum() {
-        return phoneNum;
     }
 }

@@ -42,7 +42,9 @@ public class MemberController {
     @PostMapping("/members/sign-up")
     public String signUp(MemberForm memberForm) { //form이 날아오면 자동으로 modelAttribute가 됨.
         Long joinMemberId = memberService.join(memberForm);
-        return "redirect:/members/" + joinMemberId; // 가입된 녀석의 세부정보를 보여줌.
+        System.out.println("joinId: " + joinMemberId);
+        return "redirect:/members";
+        // return "redirect:/members/" + joinMemberId; // 가입된 녀석의 세부정보를 보여줌.
     }
 
     @GetMapping("/members/{id}")
