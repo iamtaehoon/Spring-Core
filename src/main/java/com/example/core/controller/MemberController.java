@@ -43,7 +43,7 @@ public class MemberController {
     public String signUp(MemberForm memberForm) { //form이 날아오면 자동으로 modelAttribute가 됨.
         Long joinMemberId = memberService.join(memberForm);
         System.out.println("joinId: " + joinMemberId);
-        return "redirect:/members";
+        return "redirect:/members"; //TODO 이거 바꿔야함. 밑에거로
         // return "redirect:/members/" + joinMemberId; // 가입된 녀석의 세부정보를 보여줌.
     }
 
