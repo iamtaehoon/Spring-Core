@@ -70,7 +70,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Order purchase(Long memberId, Long productId, int wishToPurchaseCnt) {
         productRepository.reduce(productId, wishToPurchaseCnt);
-        Order order = orderRepository.save(memberId, productId, wishToPurchaseCnt);
+        int amountToPurchase = calculatePrice(memberId, productId, wishToPurchaseCnt);
+        Order order = orderRepository.save(memberId, productId, wishToPurchaseCnt, amountToPurchase);
         return order;
     }
 }

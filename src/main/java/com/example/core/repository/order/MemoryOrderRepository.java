@@ -13,8 +13,8 @@ public class MemoryOrderRepository implements OrderRepository {
     private static Long sequence = 0L;
 
     @Override
-    public Order save(Long memberId, Long productId, int wishToPurchaseCnt) {
-        Order order = new Order(sequence++, memberId, productId, wishToPurchaseCnt);
+    public Order save(Long memberId, Long productId, int wishToPurchaseCnt, int amountToPurchase) {
+        Order order = new Order(sequence++, memberId, productId, wishToPurchaseCnt, amountToPurchase);
         repository.put(order.getId(), order);
         return order;
     }
@@ -32,9 +32,9 @@ public class MemoryOrderRepository implements OrderRepository {
     }
 
     @Override
-    public void update(Long orderId, Long memberId, Long productId, int wishToPurchaseCnt) {
-        Order order = new Order(orderId, memberId, productId, wishToPurchaseCnt);
-        repository.put(orderId,order);
+    public void update(Long orderId, Long memberId, Long productId, int wishToPurchaseCnt, int amountToPurchase) {
+        Order order = new Order(orderId, memberId, productId, wishToPurchaseCnt, amountToPurchase);
+        repository.put(orderId, order);
     }
 
     @Override

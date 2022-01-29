@@ -1,9 +1,7 @@
 package com.example.core.service.product;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,15 +12,10 @@ import com.example.core.domain.discount.Discount;
 import com.example.core.domain.discount.FixDiscount;
 import com.example.core.domain.member.Member;
 import com.example.core.domain.product.Product;
-import com.example.core.domain.product.ProductDTO;
 import com.example.core.domain.product.ProductForm;
 import com.example.core.repository.member.MemoryMemberRepository;
 import com.example.core.repository.order.MemoryOrderRepository;
-import com.example.core.repository.order.OrderRepository;
 import com.example.core.repository.product.MemoryProductRepository;
-import com.example.core.repository.product.ProductRepository;
-import com.example.core.service.member.MemberService;
-import com.example.core.service.member.MemberServiceImpl;
 
 class ProductServiceWithPureJavaCode { //이름 이렇게 지으면 안되는데, 방법을 모르겠어서 일단 이렇게. mock 객체 공부해보기.
     MemoryProductRepository productRepository = new MemoryProductRepository();
@@ -42,8 +35,10 @@ class ProductServiceWithPureJavaCode { //이름 이렇게 지으면 안되는데
         Product product2 = productRepository.save("product2", 3000, 5);
 
         //구매가 실제로 일어난 게 아님. 디비에 단순하게 값을 넣어준거라 위에 product 수량 바뀌지 않음.
-        orderRepository.save(member1.getId(), product1.getId(), 5);
-        orderRepository.save(member2.getId(), product1.getId(), 5);
+        orderRepository.save(member1.getId(), product1.getId(), 5,
+            productService.calculatePrice(member1.getId(), product1.getId(), 5));
+        orderRepository.save(member2.getId(), product1.getId(), 5,
+            productService.calculatePrice(member2.getId(), product1.getId(), 5));
 
     }
 
