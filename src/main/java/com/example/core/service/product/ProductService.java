@@ -11,8 +11,4 @@ public interface ProductService {
 
     public ProductDTO modifyDetails(Long productId, ProductForm productForm);
 
-    public int calculatePrice(Long memberId, Long productId, int wishToPurchaseCnt);
-
-    public Order purchase(Long memberId, Long productId, int wishToPurchaseCnt);
-
 }

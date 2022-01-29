@@ -18,9 +18,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
-    private final MemberRepository memberRepository;
-    private final OrderRepository orderRepository;
-    private final Discount discount;
 
     @Override
     public ProductDTO register(ProductForm productForm) {
@@ -52,26 +49,5 @@ public class ProductServiceImpl implements ProductService {
         Product saveProduct = productRepository.modify(productId, productForm.getName(), productForm.getPrice(),
             productForm.getQuantity());
         return new ProductDTO(saveProduct);
-    }
-
-    @Override
-    public int calculatePrice(Long memberId, Long productId, int wishToPurchaseCnt) {
-        int originalPrice = productRepository.getThisPrice(productId);
-        int totalPrice = applyDiscount(memberId, originalPrice);
-        return totalPrice * wishToPurchaseCnt;
-    }
-
-    private int applyDiscount(Long memberId, int originalPrice) {
-        Member member = memberRepository.findOne(memberId).get();
-        int discountPrice = discount.calculateDiscountPrice(originalPrice, member.getGrade());
-        return originalPrice - discountPrice;
-    }
-
-    @Override
-    public Order purchase(Long memberId, Long productId, int wishToPurchaseCnt) {
-        productRepository.reduce(productId, wishToPurchaseCnt);
-        int amountToPurchase = calculatePrice(memberId, productId, wishToPurchaseCnt);
-        Order order = orderRepository.save(memberId, productId, wishToPurchaseCnt, amountToPurchase);
-        return order;
     }
 }
