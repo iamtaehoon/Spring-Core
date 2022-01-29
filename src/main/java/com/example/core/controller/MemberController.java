@@ -3,10 +3,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.core.domain.member.Member;
@@ -25,9 +27,6 @@ public class MemberController {
     public String showMemberList(Model model) {
         List<MemberDTO> memberDTOs = memberService.findAll();
         model.addAttribute("memberDTOs", memberDTOs);
-        for (MemberDTO memberDTO : memberDTOs) {
-            System.out.println(memberDTO);
-        }
         return "members/members"; //해당 파일은 for문을 돌려서 존재하는 memberDTO들을 다 보여준다.
         // 각 회원 옆에는 등급변경 버튼 있음. 누르면 Patch 실행.
     }
@@ -48,14 +47,14 @@ public class MemberController {
     }
 
     @GetMapping("/members/{id}")
-    public String memberInfo(@RequestParam Long id, Model model) {
+    public String memberInfo(@PathVariable Long id, Model model) {
         MemberDTO memberDTO = memberService.lookUp(id);
         model.addAttribute("memberDTO", memberDTO);
         return "members/member-info"; // 해당 파일은 model을 통해 넣은 memberDTO를 전부 보여준다. 홈으로 돌아가는 버튼이 필요.
     }
 
-    @PatchMapping("/members") // /members?id=1 이런식으로 사용
-    public String changeGrade(@RequestParam Long id) {
+    @PatchMapping("/members/{id}") // /members?id=1 이런식으로 사용
+    public String changeGrade(@PathVariable Long id) {
         memberService.modifyGrade(id);
         return "redirect:/members";
     }

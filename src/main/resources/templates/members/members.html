@@ -10,7 +10,16 @@
         <td><a th:href="@{/members/{id}(id=${memberDTO.getId()})}" th:text="${memberDTO.getId()}"> </a></td>
         <td><a th:href="@{/members/{id}(id=${memberDTO.getId()})}" th:text="${memberDTO.getUserId()}"> </a></td>
         <td><a th:href="@{/members/{id}(id=${memberDTO.getId()})}" th:text="${memberDTO.getGrade()}"> </a></td>
+        <td>
+            <form th:action="@{/members/{id}(id=${memberDTO.getId()})}" method="post">
+                <input type="hidden" name="_method" value="patch">
+                <button type="submit">삭제</button>
+            </form>
+        </td>
+        <!--        patch 실행해줘야함.-->
     </tr>
 </table>
+
+
 </body>
 </html>

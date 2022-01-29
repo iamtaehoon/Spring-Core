@@ -37,7 +37,19 @@ public class Member {
         return phoneNum;
     }
 
-    public void changeGrade(Grade grade) {
+    public Member changeGrade(Grade grade) {
         this.grade = grade;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+            "id=" + id +
+            ", userId='" + userId + '\'' +
+            ", passwd='" + passwd + '\'' +
+            ", grade=" + grade +
+            ", phoneNum='" + phoneNum + '\'' +
+            '}';
     }
 }

@@ -41,7 +41,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberDTO modifyGrade(Long id) {
-        Member member = switchGrade(id);
+        Member member = memberRepository.findOne(id).get();
+        member = switchGrade(member);
         return new MemberDTO(member);
     }
 
@@ -53,16 +54,16 @@ public class MemberServiceImpl implements MemberService {
         return allMembersDTO;
     }
 
-    private Member switchGrade(Long id) {
-        Member member = memberRepository.findOne(id).get();
+    private Member switchGrade(Member member) {
         Grade grade = member.getGrade();
         if (grade == Grade.VIP) {
             grade = Grade.NORMAL;
+            return member.changeGrade(grade);
         }
         if (grade == Grade.NORMAL) {
             grade = Grade.VIP;
+            return member.changeGrade(grade);
         }
-        member.changeGrade(grade);
-        return member;
+        throw new IllegalArgumentException("로직에러.");
     }
 }
