@@ -30,17 +30,29 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberDTO lookUp(String userId) {
-        if (memberRepository.findOneByUserId(userId).equals(Optional.empty())) {
+    public MemberDTO lookUp(Long id) {
+        if (memberRepository.findOne(id).equals(Optional.empty())) {
             throw new IllegalArgumentException("존재하지 않는 회원입니다.");
         }
-        return new MemberDTO(memberRepository.findOneByUserId(userId).get());
+        return new MemberDTO(memberRepository.findOne(id).get());
     }
 
     @Override
-    public MemberDTO changeGrade(Long id, Grade grade) {
-        Member member = memberRepository.findOne(id).get();
-        member.changeGrade(grade);
+    public MemberDTO modifyGrade(Long id) {
+        Member member = switchGrade(id);
         return new MemberDTO(member);
+    }
+
+    private Member switchGrade(Long id) {
+        Member member = memberRepository.findOne(id).get();
+        Grade grade = member.getGrade();
+        if (grade == Grade.VIP) {
+            grade = Grade.NORMAL;
+        }
+        if (grade == Grade.NORMAL) {
+            grade = Grade.VIP;
+        }
+        member.changeGrade(grade);
+        return member;
     }
 }
