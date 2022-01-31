@@ -1,13 +1,17 @@
 package com.example.core.repository.order;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Repository;
+
 import com.example.core.domain.Order;
 
+@Repository
 public class MemoryOrderRepository implements OrderRepository {
     private static final Map<Long, Order> repository = new HashMap<>();
     private static Long sequence = 0L;
@@ -40,6 +44,11 @@ public class MemoryOrderRepository implements OrderRepository {
     @Override
     public void delete(Long orderId) {
         repository.remove(orderId);
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return new ArrayList<>(repository.values());
     }
 
     public void clear() {
