@@ -20,8 +20,16 @@
         <td>
             <a th:href="@{/product/{id}(id=${product.id})}">상품수정</a>
         </td>
+        <td>
+            <form th:action="@{/product?id={id}(id=${product.id})}" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">삭제</button>
+            </form>
+        </td>
     </tr>
 </table>
+<a th:href="@{/product/register}">상품등록</a>
+
 
 </body>
 </html>

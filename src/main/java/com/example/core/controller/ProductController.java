@@ -58,7 +58,7 @@ public class ProductController {
         return "product/product-info";
     }
 
-    @PostMapping("product/{id}")
+    @PostMapping("/product/{id}")
     public String modify(@PathVariable Long id, @ModelAttribute ProductForm productForm) {
         productService.modifyDetails(id, productForm);
         return "redirect:/product";
