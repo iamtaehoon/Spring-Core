@@ -58,19 +58,4 @@ public class MemberController {
         memberService.modifyGrade(id);
         return "redirect:/members";
     }
-
-    //service 계층에 수정하는 메서드를 만들지 않음.
-    // @GetMapping("members/{id}/modify") //동사 쓰면 안되는데...
-    // public String memberForm(@RequestParam Long id, Model model) {
-    //     MemberDTO memberDTO = memberService.lookUp(id);
-    //     //memberDTO -> memberForm 바꿔주고 넣어야할듯. 그래야 안에서 수정이 가능하지.
-    //     model.addAttribute("memberDTO", memberDTO);
-    //     return "members/member-modify-form";
-    // }
-    //
-    // @PostMapping("/members/{id}/modify")
-    // public String modifyInfo(@RequestParam Long id, MemberForm memberForm, Model model) {
-    //     // memberService에서 수정하는 메서드를 꺼내온다.
-    //     return "redirect:/members/" + id;
-    // }
 }
