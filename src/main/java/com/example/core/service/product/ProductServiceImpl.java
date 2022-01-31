@@ -1,5 +1,9 @@
 package com.example.core.service.product;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.example.core.domain.Order;
@@ -49,5 +53,22 @@ public class ProductServiceImpl implements ProductService {
         Product saveProduct = productRepository.modify(productId, productForm.getName(), productForm.getPrice(),
             productForm.getQuantity());
         return new ProductDTO(saveProduct);
+    }
+
+    @Override
+    public List<ProductDTO> findAll() {
+        List<Product> allProducts = productRepository.findAll();
+        List<ProductDTO> allProductsDTO = new ArrayList<>();
+        allProducts.stream().forEach(product -> allProductsDTO.add(new ProductDTO(product)));
+        return allProductsDTO;
+    }
+
+    @Override
+    public ProductDTO lookUp(Long id) {
+        Optional<Product> wrappingProduct = productRepository.findOne(id);
+        if (wrappingProduct.isEmpty()) {
+            throw new IllegalArgumentException("존재하지 않는 상품 ID입니다.");
+        }
+        return new ProductDTO(wrappingProduct.get());
     }
 }

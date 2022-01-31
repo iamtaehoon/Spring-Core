@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    <div>
+        <label>상품</label>
+        <input type="text" id="name" name="name" th:value="${productDTO.name}">
+    </div>
+    <div>
+        <label>수량</label>
+        <input type="text" id="quantity" name="quantity"  th:value="${productDTO.quantity}">
+    </div>
+    <div>
+        <label>가격</label>
+        <input type="text" id="price" name="price"  th:value="${productDTO.price}">
+    </div>
+
+    <button type="submit">수정 내용 저장</button>
+    <button th:onclick="|location.href='@{/product}'|">취소</button>
+</form>
+
+</body>
+</html>

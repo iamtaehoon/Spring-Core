@@ -1,8 +1,9 @@
 package com.example.core.domain.product;
 
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+@Getter @Setter
 public class ProductForm {
     private String name;
     private int price;
