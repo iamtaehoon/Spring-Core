@@ -13,4 +13,6 @@ public interface OrderService {
     List<Order> findAll();
 
     Order purchase(OrderCheckForm orderCheckForm);
+
+    void cancel(Long orderId);
 }

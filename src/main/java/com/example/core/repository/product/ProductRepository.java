@@ -20,8 +20,6 @@ public interface ProductRepository {
 
     public int getThisPrice(Long id);
 
-    public Product update(Long id, String name, int price, int quantity);
-
     public int reduce(Long id, int wishToPurchaseCnt);
 
     public void delete(Long id);

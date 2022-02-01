@@ -57,13 +57,6 @@ public class MemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public Product update(Long id, String name, int price, int quantity) {
-        Product product = new Product(id, name, price, quantity);
-        repository.put(id, product);
-        return product;
-    }
-
-    @Override
     public int reduce(Long productId, int wishToPurchaseCnt) {
         Product product = findOne(productId).get();
         product.reduceQuantity(wishToPurchaseCnt);

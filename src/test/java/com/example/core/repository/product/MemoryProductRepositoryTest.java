@@ -80,7 +80,7 @@ class MemoryProductRepositoryTest {
     void 상품_정보_수정() {
         Product original = productRepository.findOneUsingName("상품3").get();
         Long productId = original.getId();
-        productRepository.update(productId, "상품3", 20000, 100);
+        productRepository.modify(productId, "상품3", 20000, 100);
         Product findProduct = productRepository.findOneUsingName("상품3").get();
 
         assertThat(findProduct.getPrice()).isEqualTo(20000);

@@ -51,6 +51,19 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public void cancel(Long orderId) {
+        Optional<Order> wrappingOrder = orderRepository.findOne(orderId);
+        if (wrappingOrder.isEmpty()) {
+            throw new IllegalArgumentException("해당 주문은 존재하지 않는 주문입니다.");
+        }
+        Order targetOrder = wrappingOrder.get();
+        Long productId = targetOrder.getProductId();
+        Product product = productRepository.findOne(productId).get();
+        productRepository.modify(productId, product.getName(), product.getPrice(), product.getQuantity()+targetOrder.getPurchaseQuantity());
+        orderRepository.delete(orderId);
+    }
+
+    @Override
     public List<Order> findAll() {
         return orderRepository.findAll();
     }
