@@ -54,6 +54,15 @@ public class MemberServiceImpl implements MemberService {
         return allMembersDTO;
     }
 
+    @Override
+    public Long findOneUsingName(String memberName) {
+        Optional<Member> wrappingMember = memberRepository.findOneByUserId(memberName);
+        if (wrappingMember.isEmpty()) {
+            throw new IllegalArgumentException("해당 멤버는 존재하지 않습니다.");
+        }
+        return wrappingMember.get().getId();
+    }
+
     private Member switchGrade(Member member) {
         Grade grade = member.getGrade();
         if (grade == Grade.VIP) {

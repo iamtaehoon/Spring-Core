@@ -1,11 +1,14 @@
 package com.example.core.service.order;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.example.core.domain.Order;
+import com.example.core.domain.OrderCheckForm;
+import com.example.core.domain.OrderForm;
 import com.example.core.domain.discount.Discount;
 import com.example.core.domain.member.Member;
 import com.example.core.domain.product.Product;
@@ -24,31 +27,10 @@ public class OrderServiceImpl implements OrderService{
     private final Discount discount;
 
     @Override
-    public int calculatePrice(String memberName, String productName, int wishToPurchaseCnt) {
-        Long memberId = validateMemberIsPresent(memberName);
-        Long productId = validateProductIsPresent(productName);
-
+    public int calculatePrice(Long memberId, Long productId, int wishToPurchaseCnt) {
         int originalPrice = productRepository.getThisPrice(productId);
         int totalPrice = applyDiscount(memberId, originalPrice);
         return totalPrice * wishToPurchaseCnt;
-    }
-
-    private Long validateProductIsPresent(String productName) {
-        Optional<Product> wrappingProduct = productRepository.findOneUsingName(productName);
-        if (wrappingProduct.isEmpty()) {
-            throw new IllegalArgumentException("존재하지 않는 상품이 사용되었습니다.");
-        }
-        Long productId = wrappingProduct.get().getId();
-        return productId;
-    }
-
-    private Long validateMemberIsPresent(String memberName) {
-        Optional<Member> wrappingMember = memberRepository.findOneByUserId(memberName);
-        if (wrappingMember.isEmpty()) {
-            throw new IllegalArgumentException("존재하지 않는 멤버가 사용되었습니다.");
-        }
-        Long memberId = wrappingMember.get().getId();
-        return memberId;
     }
 
     private int applyDiscount(Long memberId, int originalPrice) {
@@ -58,14 +40,14 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public Order purchase(String memberName, String productName, int wishToPurchaseCnt) {
-        Long memberId = validateMemberIsPresent(memberName);
-        Long productId = validateProductIsPresent(productName);
+    public Order purchase(OrderCheckForm orderCheckForm) {
+        Long memberId = orderCheckForm.getMemberId();
+        Long productId = orderCheckForm.getProductId();
+        int wishToPurchaseCnt = orderCheckForm.getQuantity();
+        int amountToPurchase = orderCheckForm.getCalculatePrice();
 
         productRepository.reduce(productId, wishToPurchaseCnt);
-        int amountToPurchase = calculatePrice(memberName, productName, wishToPurchaseCnt);
-        Order order = orderRepository.save(memberId, productId, wishToPurchaseCnt, amountToPurchase);
-        return order;
+        return orderRepository.save(memberId, productId, wishToPurchaseCnt, amountToPurchase);
     }
 
     @Override

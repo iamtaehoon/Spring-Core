@@ -71,4 +71,13 @@ public class ProductServiceImpl implements ProductService {
         }
         return new ProductDTO(wrappingProduct.get());
     }
+
+    @Override
+    public Long findOneUsingName(String productName) {
+        Optional<Product> wrappingProduct = productRepository.findOneUsingName(productName);
+        if (wrappingProduct.isEmpty()) {
+            throw new IllegalArgumentException("해당 상품은 존재하지 않습니다.");
+        }
+        return wrappingProduct.get().getId();
+    }
 }

@@ -17,4 +17,6 @@ public interface ProductService {
     public List<ProductDTO> findAll();
 
     public ProductDTO lookUp(Long id);
+
+    Long findOneUsingName(String productName);
 }

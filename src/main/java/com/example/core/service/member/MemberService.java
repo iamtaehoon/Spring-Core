@@ -15,4 +15,6 @@ public interface MemberService {
     public MemberDTO modifyGrade(Long id);
 
     List<MemberDTO> findAll();
+
+    Long findOneUsingName(String memberName);
 }
